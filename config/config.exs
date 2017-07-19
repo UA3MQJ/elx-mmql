@@ -21,6 +21,20 @@ use Mix.Config
 #     config :logger, level: :info
 #
 
+
+config :mmql,
+  mq_type: :nats
+
+# option for nats
+config :mmql,
+  nats: %{
+    subject: "mmql.stream",
+    host: "127.0.0.1",
+    port: 4222,
+    timeout: 6000
+  }
+
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.
