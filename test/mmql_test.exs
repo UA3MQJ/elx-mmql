@@ -1,8 +1,9 @@
-defmodule MmqlTest do
+defmodule MMQLTest do
+  require Logger
   use ExUnit.Case
-  doctest Mmql
 
-  test "the truth" do
-    assert 1 + 1 == 2
-  end
+  use MMQL
+
+
+
 end
