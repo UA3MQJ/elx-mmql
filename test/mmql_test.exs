@@ -7,7 +7,7 @@ defmodule MMQLTest do
     topic = "topic"
     msg = "message"
     assert {:ok, _info} = MMQL.connect(conn_name)
-    assert _ref = MMQL.sub(conn_name, topic)
+    MMQL.sub(conn_name, topic)
     MMQL.pub(conn_name, topic, msg)
     receive do
       {:subscribed_publish, ^conn_name, ^topic, ^msg} ->

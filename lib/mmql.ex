@@ -1,15 +1,11 @@
 defmodule MMQL do
 
   use Application
-  require Logger
 
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    Logger.debug "Application MMQL.start"
-
     children = [
-      worker(MMQL.MQLog, []),
       worker(MMQL.ConnectionSup, []),
       worker(MMQL.HUB, [])
     ]
