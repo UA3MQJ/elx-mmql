@@ -1,4 +1,9 @@
 # MMQL - Multi MQ library
+Universal library-application wrapper for working with MQ servers
+
+MQ support list:
+ * NATS via https://github.com/nats-io/elixir-nats
+ * MQTT via https://github.com/suvash/hulaaki
 
 ## Installation
 In mix.exs file
