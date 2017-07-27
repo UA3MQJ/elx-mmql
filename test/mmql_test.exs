@@ -20,7 +20,7 @@ defmodule MMQLTest do
       _else ->
         throw("error rcvd conn_name, topic or msg")
       after
-        2_000 ->
+        10_000 ->
           throw("msg not received")
     end
     

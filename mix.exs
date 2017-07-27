@@ -20,7 +20,7 @@ defmodule MMQL.Mixfile do
   defp deps do
     [
       {:gproc, "0.3.1"},
-      {:mqnats, git: "https://github.com/UA3MQJ/elx-mq-nats.git"},
+      {:nats, git: "https://github.com/nats-io/elixir-nats.git"},
       {:hulaaki, "~> 0.0.4"}
     ]
   end
