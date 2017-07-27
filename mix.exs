@@ -1,4 +1,4 @@
-defmodule Mmql.Mixfile do
+defmodule MMQL.Mixfile do
   use Mix.Project
 
   @version "0.0.1"
@@ -13,13 +13,15 @@ defmodule Mmql.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :gproc],
+     mod: {MMQL, []}]
   end
 
   defp deps do
     [
+      {:gproc, "0.3.1"},
       {:mqnats, git: "https://github.com/UA3MQJ/elx-mq-nats.git"},
-      {:natural_sort, git: "https://github.com/DanCouper/natural_sort.git"}
+      {:hulaaki, "~> 0.0.4"}
     ]
   end
 end
