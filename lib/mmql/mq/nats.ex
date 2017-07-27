@@ -85,7 +85,7 @@ defmodule MMQL.MQ.NATS do
   end
 
   # receive sub
-  def handle_info({:msg, ref, topic, _reply, message} = msg, state) do
+  def handle_info({:msg, ref, topic, _reply, message}, state) do
     MMQL.HUB.rcv_from_ref(ref, topic, message)
     {:noreply, state}
   end

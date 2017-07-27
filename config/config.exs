@@ -6,7 +6,7 @@ config :mmql,
       "A" => %{
         mq_type: :mqnats,
         autoconnect: false,
-        host: "127.0.0.1",
+        host: "demo.nats.io",
         port: 4222,
         timeout: 6000
       },
@@ -21,9 +21,11 @@ config :mmql,
 
       "C" => %{
         mq_type: :mqmqtt,
-        autoconnect: true,
-        host: "127.0.0.1",
+        autoconnect: false,
+        host: "test.mosquitto.org",
         port: 1883
+        # host: "127.0.0.1",
+        # port: 1883
       }
     }
   }

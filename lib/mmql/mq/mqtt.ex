@@ -33,9 +33,9 @@ defmodule MMQL.MQ.MQTT do
 
     {:ok, mqtt_pid} = MMQL.MQ.MQTT.Client.start_link(%{mqtt_pid: self()})
 
-    response = MMQL.MQ.MQTT.Client.connect(mqtt_pid, mqtt_config)
+    :ok = MMQL.MQ.MQTT.Client.connect(mqtt_pid, mqtt_config)
 
-    {:reply, response, %{state | mqtt_pid: mqtt_pid, mqtt_status: :connected}}
+    {:reply, {:ok, %{mqtt_pid: mqtt_pid}}, %{state | mqtt_pid: mqtt_pid, mqtt_status: :connected}}
   end
 
   def handle_call(:disconnect, _from, %{:mqtt_status => :disconnected} = state) do
