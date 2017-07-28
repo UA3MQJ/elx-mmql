@@ -1,5 +1,8 @@
 defmodule MMQL.MQ.NATS do
-   
+  @moduledoc """
+  Module for connecting with MQ NATS
+  """
+
   use GenServer
 
   def start_link(options) do

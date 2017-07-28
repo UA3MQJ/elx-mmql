@@ -1,5 +1,8 @@
 defmodule MMQL.MQ.MQTT do
-   
+  @moduledoc """
+  Module for connecting with MQ MQTT
+  """
+
   use GenServer
 
   def start_link(options) do
