@@ -11,7 +11,8 @@ defmodule MMQL.Mixfile do
      start_permanent: Mix.env == :prod,
      deps: deps(),
 
-     test_coverage: [tool: ExCoveralls]
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test]
     ]
   end
 
@@ -30,7 +31,7 @@ defmodule MMQL.Mixfile do
       {:earmark, "~> 0.2.1", only: [:dev, :docs]},
       {:ex_doc, "~> 0.12", only: [:dev, :docs]},
       {:dialyze, "~> 0.2.1", only: :test},
-      {:excoveralls, "~> 0.5.4", only: [:dev, :test]}
+      {:excoveralls, "~> 0.7", only: [:dev, :test]}
     ]
   end
 end
