@@ -15,27 +15,27 @@ defmodule MMQL do
   end
 
   def connect(name) do
-    GenServer.call({:via, :gproc, {:n, :l, name}}, :connect, 20_000)
+    GenServer.call({:via, :gproc, {:n, :l, name}}, :connect)
   end
 
   def disconnect(name) do
-    GenServer.call({:via, :gproc, {:n, :l, name}}, :disconnect, 20_000)
+    GenServer.call({:via, :gproc, {:n, :l, name}}, :disconnect)
   end
 
   def sub(name, topic), do: subscribe(name, topic)
   def subscribe(name, topic) do
     subscriber_pid = self()
-    GenServer.call({:via, :gproc, {:n, :l, name}}, {:subscribe, topic, subscriber_pid}, 20_000)
+    GenServer.call({:via, :gproc, {:n, :l, name}}, {:subscribe, topic, subscriber_pid})
   end
 
   def usub(name, topic), do: unsubscribe(name, topic)
   def unsubscribe(name, topic) do
-    GenServer.call({:via, :gproc, {:n, :l, name}}, {:unsubscribe, topic}, 20_000)
+    GenServer.call({:via, :gproc, {:n, :l, name}}, {:unsubscribe, topic})
   end
 
   def pub(name, topic, message), do: publish(name, topic, message)
   def publish(name, topic, message) do
-    GenServer.call({:via, :gproc, {:n, :l, name}}, {:publish, topic, message}, 20_000)
+    GenServer.call({:via, :gproc, {:n, :l, name}}, {:publish, topic, message})
   end
 
 end
