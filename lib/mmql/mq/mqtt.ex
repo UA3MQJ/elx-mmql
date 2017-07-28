@@ -28,7 +28,8 @@ defmodule MMQL.MQ.MQTT do
     mqtt_config = [
       client_id: state.options.name,
       host: state.options.options.host,
-      port: state.options.options.port      
+      port: state.options.options.port,
+      timeout: state.options.options.timeout
     ]
 
     {:ok, mqtt_pid} = MMQL.MQ.MQTT.Client.start_link(%{mqtt_pid: self()})

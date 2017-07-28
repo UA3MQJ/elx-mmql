@@ -25,7 +25,8 @@ config :mmql,
         # host: "test.mosquitto.org",
         # port: 1883
         host: "127.0.0.1",
-        port: 1883
+        port: 1883,
+        timeout: 20000
       }
     }
   }
