@@ -2,9 +2,9 @@ defmodule MMQLTest do
   require Logger
   use ExUnit.Case
 
-  test "test NATS" do
-    test_conn("A", "topic", "message")
-  end
+  # test "test NATS" do
+  #   test_conn("A", "topic", "message")
+  # end
 
   test "test MQTT" do
     test_conn("C", "topic", "message")
