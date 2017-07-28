@@ -1,0 +1,18 @@
+sudo: required
+language: elixir
+elixir:
+  - 1.4.2
+otp_release:
+  - 19.3
+before_install:
+install:
+before_script:
+  - mix local.hex --force
+  - mix local.rebar
+  - MIX_ENV=test mix deps.get
+script:
+  - MIX_ENV=test mix test
+after_script:
+  - MIX_ENV=test mix coveralls.travis
+  - MIX_ENV=docs mix deps.get
+  - MIX_ENV=docs mix inch.report

@@ -21,7 +21,13 @@ defmodule MMQL.Mixfile do
     [
       {:gproc, "0.3.1"},
       {:nats, git: "https://github.com/nats-io/elixir-nats.git"},
-      {:hulaaki, "~> 0.0.4"}
+      {:hulaaki, "~> 0.0.4"},
+
+      {:inch_ex, "~> 0.5.3", only: :docs},
+      {:earmark, "~> 0.2.1", only: [:dev, :docs]},
+      {:ex_doc, "~> 0.12", only: [:dev, :docs]},
+      {:dialyze, "~> 0.2.1", only: :test},
+      {:excoveralls, "~> 0.5.4", only: [:dev, :test]}
     ]
   end
 end
