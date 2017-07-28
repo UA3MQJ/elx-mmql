@@ -16,6 +16,8 @@ install:
   - cd ..
 before_script:
   - mosquitto -d
+  - mix local.hex --force
+  - mix local.rebar
   - MIX_ENV=test mix deps.get
 script:
   - MIX_ENV=test mix test
