@@ -1,4 +1,5 @@
 # MMQL - Multi MQ library
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://travis-ci.org/UA3MQJ/elx-mmql.svg?branch=master)](https://travis-ci.org/UA3MQJ/elx-mmql?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/UA3MQJ/elx-mmql/badge.svg?branch=master)](https://coveralls.io/github/UA3MQJ/elx-mmql?branch=master)
 [![Inline docs](http://inch-ci.org/github/UA3MQJ/elx-mmql.svg?branch=master)](http://inch-ci.org/github/UA3MQJ/elx-mmql?branch=master)
