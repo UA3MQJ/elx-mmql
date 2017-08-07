@@ -53,25 +53,25 @@ defmodule MMQL.MQ.NATS do
   def handle_call({:subscribe, _topic, _pid}, _from, %{:nats_status => :disconnected} = state) do
     {:reply, {:error, :not_connected}, state}
   end
-  def handle_call({:subscribe, topic}, _from, state) do
+  def handle_call({:subscribe, topic, pid}, _from, state) do
     {:ok, ref} = Nats.Client.sub(state.nats_pid, self(), topic)
-    new_subj2ref = Map.merge(state.subj2ref, %{topic => ref})
+    new_subj2ref = Map.merge(state.subj2ref, %{{topic, pid} => ref})
 
     {:reply, {:ok, ref}, %{state| subj2ref: new_subj2ref}}
   end
 
-  def handle_call({:unsubscribe, _topic}, _from, %{:nats_status => :disconnected} = state) do
+  def handle_call({:unsubscribe, _topic, _pid}, _from, %{:nats_status => :disconnected} = state) do
     {:reply, {:error, :not_connected}, state}
   end
-  def handle_call({:unsubscribe, topic}, _from, state) do
-    case state.subj2ref[topic] do
+  def handle_call({:unsubscribe, topic, pid}, _from, state) do
+    case state.subj2ref[{topic, pid}] do
       # subscription not exist
       nil ->
         {:reply, {:error, :subscription_no_exist}, state}
       ref ->
         case Nats.Client.unsub(state.nats_pid, ref, topic) do
           :ok ->
-            new_subj2ref = Map.delete(state.subj2ref, topic)
+            new_subj2ref = Map.delete(state.subj2ref, {topic, pid})
             {:reply, :ok, %{state | subj2ref: new_subj2ref}}
           error ->
             {:reply, {:error, error}, state}

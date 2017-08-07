@@ -43,18 +43,19 @@ defmodule MMQL.Connection do
     {:reply, reply, state}
   end
 
-  def handle_call({:subscribe, topic, subscriber_pid}, _from, state) do
-    {:ok, subscriber_ref} = GenServer.call(state.mq_cli_pid, {:subscribe, topic})
+  def handle_call({:subscribe, topic, s_pid}, _from, state) do
+    {:ok, subscriber_ref} = GenServer.call(state.mq_cli_pid, {:subscribe, topic, s_pid})
 
-    MMQL.HUB.reg_ref(subscriber_pid, subscriber_ref, state.options.name, topic)
+    MMQL.HUB.reg_ref(s_pid, subscriber_ref, state.options.name, topic)
 
     reply = %{reference: subscriber_ref}
 
     {:reply, reply, state}
   end
 
-  def handle_call({:unsubscribe, topic}, _from, state) do
-    reply = GenServer.call(state.mq_cli_pid, {:unsubscribe, topic})
+  def handle_call({:unsubscribe, topic, s_pid}, _from, state) do
+    MMQL.HUB.unreg_ref(s_pid, state.options.name, topic)
+    reply = GenServer.call(state.mq_cli_pid, {:unsubscribe, topic, s_pid})
     {:reply, reply, state}
   end
 

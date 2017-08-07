@@ -5,7 +5,7 @@ defmodule MMQL.HUB do
   @hub_proc_name "MMQL.HUB"
 
   def start_link do
-    GenServer.start_link(__MODULE__, [])  
+    GenServer.start_link(__MODULE__, [])
   end
 
   def init([]) do
@@ -17,7 +17,8 @@ defmodule MMQL.HUB do
 
     state = %{
         options: options,
-        ref2subscriber: %{}
+        ref2subscriber: %{},
+        pt2ref: %{}
     }
     {:ok, state}
   end
@@ -25,6 +26,11 @@ defmodule MMQL.HUB do
   # store pid of process, who subscribe
   def reg_ref(subscriber_pid, ref, conn_name, topic) do
     GenServer.cast({:via, :gproc, {:n, :l, @hub_proc_name}}, {:reg_ref, subscriber_pid, ref, conn_name, topic})
+  end
+
+  # remove pid
+  def unreg_ref(s_pid, conn_name, topic) do
+    GenServer.cast({:via, :gproc, {:n, :l, @hub_proc_name}}, {:unreg_ref, s_pid, conn_name, topic})
   end
 
   # receive msg from ref -> proc
@@ -41,7 +47,18 @@ defmodule MMQL.HUB do
     }
 
     new_ref2subscriber = Map.merge(state.ref2subscriber, %{ref => subscribe_info})
-    {:noreply, %{state | ref2subscriber: new_ref2subscriber}}
+    new_pt2ref = Map.merge(state.pt2ref, %{{subscriber_pid, topic} => ref})
+    {:noreply, %{state | ref2subscriber: new_ref2subscriber, pt2ref: new_pt2ref}}
+  end
+
+  def handle_cast({:unreg_ref, s_pid, _conn_name, topic}, state) do
+    {new_ref2subscriber, new_pt2ref} = case state.pt2ref[{s_pid, topic}] do
+       nil ->
+         {state.ref2subscriber, state.pt2ref}
+       ref ->
+         {Map.delete(state.ref2subscriber, ref), Map.delete(state.pt2ref, {s_pid, topic})}
+    end
+    {:noreply, %{state | ref2subscriber: new_ref2subscriber, pt2ref: new_pt2ref}}
   end
 
   def handle_cast({:rcv_from_ref, ref, topic, message}, state) do

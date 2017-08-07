@@ -54,17 +54,17 @@ defmodule MMQL.MQ.MQTT do
   def handle_call({:subscribe, _topic, _pid}, _from, %{:mqtt_status => :disconnected} = state) do
     {:reply, {:error, :not_connected}, state}
   end
-  def handle_call({:subscribe, topic}, _from, state) do
+  def handle_call({:subscribe, topic, _pid}, _from, state) do
     sub_options = [id: state.sub_autoincrement, topics: [topic], qoses: [0]]
     :ok = MMQL.MQ.MQTT.Client.subscribe(state.mqtt_pid, sub_options)
 
     {:reply, {:ok, _ref = state.options.name}, %{state | sub_autoincrement: state.sub_autoincrement + 1}}
   end
 
-  def handle_call({:unsubscribe, _topic}, _from, %{:mqtt_status => :disconnected} = state) do
+  def handle_call({:unsubscribe, _topic, _pid}, _from, %{:mqtt_status => :disconnected} = state) do
     {:reply, {:error, :not_connected}, state}
   end
-  def handle_call({:unsubscribe, topic}, _from, state) do
+  def handle_call({:unsubscribe, topic, _pid}, _from, state) do
     usub_options = [id: state.sub_autoincrement, topics: [topic]]
     :ok = MMQL.MQ.MQTT.Client.unsubscribe(state.mqtt_pid, usub_options)
 
