@@ -14,6 +14,11 @@ MQ support list:
 ## Installation
 In mix.exs file
 ```elixir
+# add to start apps
+def application do
+  [applications: [ ..., :util_mq]]
+end
+
 def deps do
   [{:mmql, git: "https://github.com/UA3MQJ/elx_mmql.git"}]
 end
