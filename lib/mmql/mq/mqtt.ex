@@ -28,7 +28,8 @@ defmodule MMQL.MQ.MQTT do
     {:reply, {:error, :already_connected}, state}
   end
   def handle_call(:connect, _from, state) do
-    mqtt_config = Map.merge(%{client_id: state.options.name}, state.options.options)
+    mqtt_config = %{client_id: state.options.name}
+    |> Map.merge(state.options.options)
     |> Enum.into([])
 
     {:ok, mqtt_pid} = MMQL.MQ.MQTT.Client.start_link(%{mqtt_pid: self()})
