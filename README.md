@@ -15,7 +15,7 @@ MQ support list:
 In mix.exs file
 ```elixir
 def deps do
-  [:mmql, git: "https://github.com/UA3MQJ/elx-mmql.git"]
+  [:mmql, git: "https://github.com/UA3MQJ/elx_mmql.git"]
 end
 ```
 
