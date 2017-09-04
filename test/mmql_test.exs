@@ -17,8 +17,8 @@ defmodule MMQLTest do
     receive do
       {:subscribed_publish, ^conn_name, ^topic, ^msg} ->
         :ok
-      _else ->
-        throw("error rcvd conn_name, topic or msg")
+      err_rcvd ->
+        throw("error rcvd conn_name, topic or msg = #{inspect err_rcvd}")
       after
         10_000 ->
           throw("msg not received")
