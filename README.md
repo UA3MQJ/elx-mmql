@@ -1,9 +1,9 @@
 # MMQL - Multi MQ library
 ![Wrapper for MQ](http://b.repl.ca/v1/Wrapper_for-MQ-blue.png)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.org/UA3MQJ/elx-mmql.svg?branch=master)](https://travis-ci.org/UA3MQJ/elx-mmql?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/UA3MQJ/elx-mmql/badge.svg?branch=master)](https://coveralls.io/github/UA3MQJ/elx-mmql?branch=master)
-[![Inline docs](http://inch-ci.org/github/UA3MQJ/elx-mmql.svg?branch=master)](http://inch-ci.org/github/UA3MQJ/elx-mmql?branch=master)
+[![Build Status](https://travis-ci.org/UA3MQJ/elx_mmql.svg?branch=master)](https://travis-ci.org/UA3MQJ/elx_mmql?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/UA3MQJ/elx_mmql/badge.svg?branch=master)](https://coveralls.io/github/UA3MQJ/elx_mmql?branch=master)
+[![Inline docs](http://inch-ci.org/github/UA3MQJ/elx_mmql.svg)](http://inch-ci.org/github/UA3MQJ/elx_mmql)
 
 Universal library-application wrapper for working with MQ servers
 
